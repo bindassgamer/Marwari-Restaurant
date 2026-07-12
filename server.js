@@ -167,21 +167,17 @@ const submissions=readSubmissions();
 submissions.unshift(submission);
 
 
-console.log(submissions);{
-
-res.json({
-success:true,
-message:"Message received successfully"
-});
-
-}
-else{
-
-res.status(500).json({
-success:false,
-message:"Failed saving data"
-});
-
+console.log(submissions);
+if (writeSubmissions(submissions)) {
+  res.json({
+    success: true,
+    message: "Message received successfully"
+  });
+} else {
+  res.status(500).json({
+    success: false,
+    message: "Failed saving data"
+  });
 }
 
 
@@ -490,4 +486,4 @@ path.join(__dirname,'public','index.html')
 
 
 // IMPORTANT FOR VERCEL
-module.exports = app;
+module.exports = (req, res) => app(req, res);
