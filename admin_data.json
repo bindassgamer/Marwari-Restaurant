@@ -1,0 +1,179 @@
+{
+  "banner": {
+    "headline": "Where Exceptional Dining Meets Unforgettable Celebrations",
+    "subheading": "Experience fine dining, grand celebrations, and premium entertainment—all in one destination."
+  },
+  "contact": {
+    "phone": "+91 99999 88888",
+    "email": "concierge@aurumresort.com",
+    "address": "Aurum Luxury Estate, Golden Mile Road, Udaipur, Rajasthan - 313001",
+    "workingHours": "Restaurant: 11:00 AM - 11:30 PM | Lawn: Open 24 Hours | Theatre: 10:00 AM - 11:00 PM",
+    "whatsapp": "919999988888",
+    "mapEmbed": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3628.7845347209774!2d73.71442127593679!3d24.56209215714343!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3967e54737d2f97d%3A0xe54d9c49d8c3626e!2sShankeshwar%20Enclave!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+  },
+  "testimonials": [
+    {
+      "id": "t1",
+      "name": "Maharaj Kumar Singh",
+      "quote": "Aurum Estate hosted our family wedding on the Banquet Lawn. The coordination, custom catering, and majestic light designs for 4,500 guests was absolutely flawless. It was a royal fairy tale.",
+      "rating": 5,
+      "role": "Royal Family Representative"
+    },
+    {
+      "id": "t2",
+      "name": "Chef Marco Pierre",
+      "quote": "The fine dining restaurant at Aurum is a masterclass in gastronomy. Their blend of traditional Mewari flavours with French culinary techniques is exceptionally rare and delicious.",
+      "rating": 5,
+      "role": "Michelin Star Reviewer"
+    },
+    {
+      "id": "t3",
+      "name": "Ananya Singhania",
+      "quote": "The private theatre is a revelation. Gold class recliners, gourmet dining delivered straight to your seat, and top-tier acoustics. Watching a cinema here feels like a premium event in itself.",
+      "rating": 5,
+      "role": "CEO, Singhania Enterprises"
+    }
+  ],
+  "movies": [
+    {
+      "id": "m1",
+      "title": "The Golden Dynasty",
+      "genre": "Historical Epic / Drama",
+      "duration": "154 mins",
+      "language": "Hindi / English",
+      "rating": "UA",
+      "poster": "https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=800",
+      "status": "now-showing",
+      "shows": {
+        "today": ["11:30 AM", "3:00 PM", "6:30 PM", "9:45 PM"],
+        "tomorrow": ["12:00 PM", "3:30 PM", "7:00 PM", "10:15 PM"],
+        "upcoming": ["11:30 AM", "3:00 PM", "6:30 PM", "9:45 PM"]
+      }
+    },
+    {
+      "id": "m2",
+      "title": "Whispers of the Lake",
+      "genre": "Mystery / Romance",
+      "duration": "132 mins",
+      "language": "English",
+      "rating": "U",
+      "poster": "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=800",
+      "status": "now-showing",
+      "shows": {
+        "today": ["1:00 PM", "4:30 PM", "8:00 PM"],
+        "tomorrow": ["1:30 PM", "5:00 PM", "8:30 PM"],
+        "upcoming": ["1:00 PM", "4:30 PM", "8:00 PM"]
+      }
+    },
+    {
+      "id": "m3",
+      "title": "Echoes of Udaipur",
+      "genre": "Documentary / Art",
+      "duration": "98 mins",
+      "language": "Hindi",
+      "rating": "U",
+      "poster": "https://images.unsplash.com/photo-1513151233558-d860c5398176?q=80&w=800",
+      "status": "coming-soon",
+      "shows": {
+        "today": [],
+        "tomorrow": [],
+        "upcoming": []
+      }
+    }
+  ],
+  "menu": [
+    {
+      "id": "dish1",
+      "name": "Truffle Scented Wild Mushroom Soup",
+      "description": "Slow-simmered forest mushrooms, shaved black winter truffles, white truffle oil, and garlic herb crostini.",
+      "price": 650,
+      "category": "Starters",
+      "isChefSpecial": true,
+      "image": "https://images.unsplash.com/photo-1547592165-e1d17f97a15a?q=80&w=800"
+    },
+    {
+      "id": "dish2",
+      "name": "Aurum Gold-Leaf Paneer Tikka",
+      "description": "Premium cottage cheese blocks marinated in organic Kashmiri red chilies and hung curd, smoked in a traditional tandoor, finished with edible 24K gold leaf.",
+      "price": 850,
+      "category": "Starters",
+      "isChefSpecial": true,
+      "image": "https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?q=80&w=800"
+    },
+    {
+      "id": "dish3",
+      "name": "Royal Mewari Lal Maas",
+      "description": "Udaipur's signature slow-cooked tender lamb in a fiery Mathania chili gravy, infused with clove smoke, served with clay-oven baked butter naan.",
+      "price": 1450,
+      "category": "Mains",
+      "isChefSpecial": false,
+      "image": "https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=800"
+    },
+    {
+      "id": "dish4",
+      "name": "Saffron Cardamom Pistachio Kulfi",
+      "description": "Slow-reduced milk ice cream infused with premium Kashmiri saffron filaments, green cardamom, roasted pistachios, and silver leaf foil.",
+      "price": 450,
+      "category": "Desserts",
+      "isChefSpecial": false,
+      "image": "https://images.unsplash.com/photo-1579954115545-a95591f28bfc?q=80&w=800"
+    },
+    {
+      "id": "dish5",
+      "name": "Elixir Mocktail Royale",
+      "description": "A luxury blend of fresh muddled berries, cold-pressed pineapple, fresh lime, edible rose gold glitter, charged with premium tonic water.",
+      "price": 550,
+      "category": "Beverages",
+      "isChefSpecial": true,
+      "image": "https://images.unsplash.com/photo-1536935338788-846bb9981813?q=80&w=800"
+    }
+  ],
+  "offers": [
+    {
+      "id": "of1",
+      "title": "Royal Gastronomic Journey",
+      "code": "AURUM15",
+      "description": "Get a complimentary glass of premium sparkling mocktail and 15% off your total bill when reserving online.",
+      "discount": "15% Off",
+      "validity": "Valid till Dec 31, 2026"
+    },
+    {
+      "id": "of2",
+      "title": "Grand Banquet Package",
+      "code": "ROYALE5200",
+      "description": "Book the Banquet Lawn for over 2,000 guests and receive complimentary event management, a luxury welcome stage, and live instrumentation.",
+      "discount": "Free Decor Setup",
+      "validity": "Limited Period Offer"
+    }
+  ],
+  "events": [
+    {
+      "id": "e1",
+      "title": "Grand Weddings & Receptions",
+      "description": "With a capacity of 5,200 guests, our banquet lawn transforms into a magical palace setup, complete with stellar staging, premium catering, and automated royal lighting arrays.",
+      "image": "https://images.unsplash.com/photo-1469371670807-013ccf25f16a?q=80&w=800"
+    },
+    {
+      "id": "e2",
+      "title": "Corporate Gala Dinners",
+      "description": "Perfect location for national conferences, product launches, and award nights. Full power backups, sound arrays, VIP lounges, and parking for 1,200 vehicles.",
+      "image": "https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=800"
+    },
+    {
+      "id": "e3",
+      "title": "Festivals & Large Concerts",
+      "description": "The largest outdoor venue in the city, fully equipped to host grand music festivals, cultural events, dandiya nights, and large public gatherings securely.",
+      "image": "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=800"
+    }
+  ],
+  "gallery": [
+    { "id": "g1", "url": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=800", "category": "Restaurant" },
+    { "id": "g2", "url": "https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=800", "category": "Food" },
+    { "id": "g3", "url": "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=800", "category": "Banquet" },
+    { "id": "g4", "url": "https://images.unsplash.com/photo-1469371670807-013ccf25f16a?q=80&w=800", "category": "Wedding" },
+    { "id": "g5", "url": "https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=800", "category": "Corporate Events" },
+    { "id": "g6", "url": "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?q=80&w=800", "category": "Theatre" },
+    { "id": "g7", "url": "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=800", "category": "Events" },
+    { "id": "g8", "url": "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=800", "category": "Restaurant" }
+  ]
+}

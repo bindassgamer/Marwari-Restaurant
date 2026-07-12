@@ -1,0 +1,27 @@
+{
+  "name": "aarthik-3day-website",
+  "version": "1.0.0",
+  "description": "Premium Financial Advisory Website for AARTHIK 3DAY by Vishnu Menariya",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [
+    "financial",
+    "advisor",
+    "mutual-funds",
+    "investments"
+  ],
+  "author": "Vishnu Menariya",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "uuid": "^14.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}

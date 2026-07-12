@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aurum Estate | Administration Portal</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="https://images.unsplash.com/photo-1579954115545-a95591f28bfc?q=80&w=32">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Poppins:wght@400;500;600;700;800&amp;family=Cinzel:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <!-- Login Section -->
+  <div class="login-wrapper" id="loginWrapper">
+    <div class="login-card">
+      <h1 class="login-logo">AURUM<span>.</span></h1>
+      <h2 class="login-title">Administration Portal</h2>
+      <p class="login-subtitle">Enter credentials to manage reservations, movies, menus, and website configurations.</p>
+      
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-user"></i>
+            <input type="text" id="username" placeholder="Enter username" required autocomplete="username">
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="password">Password</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-lock"></i>
+            <input type="password" id="password" placeholder="Enter password" required autocomplete="current-password">
+          </div>
+        </div>
+        
+        <div class="error-message" id="loginError">Invalid username or password.</div>
+        
+        <button type="submit" class="btn btn-primary btn-full" id="loginBtn">
+          <span>Sign In</span> <i class="fa-solid fa-right-to-bracket"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+  <!-- Dashboard Section (Hidden by default) -->
+  <div class="dashboard-wrapper hidden" id="dashboardWrapper">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h2 class="sidebar-logo">AURUM<span>.</span></h2>
+      </div>
+      <nav class="sidebar-nav">
+        <ul>
+          <li class="nav-item active" data-panel="bookings"><a href="#"><i class="fa-solid fa-calendar-check"></i> Bookings Log</a></li>
+          <li class="nav-item" data-panel="movies"><a href="#"><i class="fa-solid fa-film"></i> Movies Manager</a></li>
+          <li class="nav-item" data-panel="menu"><a href="#"><i class="fa-solid fa-utensils"></i> Menu Manager</a></li>
+          <li class="nav-item" data-panel="gallery"><a href="#"><i class="fa-solid fa-images"></i> Gallery Manager</a></li>
+          <li class="nav-item" data-panel="offers"><a href="#"><i class="fa-solid fa-ticket"></i> Offers Manager</a></li>
+          <li class="nav-item" data-panel="testimonials"><a href="#"><i class="fa-solid fa-comments"></i> Testimonials</a></li>
+          <li class="nav-item" data-panel="settings"><a href="#"><i class="fa-solid fa-sliders"></i> General Settings</a></li>
+          <li style="margin-top: 30px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 15px;">
+            <a href="/" target="_blank"><i class="fa-solid fa-globe"></i> View Main Site</a>
+          </li>
+        </ul>
+      </nav>
+      <div class="sidebar-footer">
+        <button class="btn btn-outline btn-full" id="logoutBtn">
+          <i class="fa-solid fa-right-from-bracket"></i> Sign Out
+        </button>
+      </div>
+    </aside>
+    <!-- Main Content Area -->
+    <main class="main-content">
+      
+      <!-- Top Header Bar -->
+      <header class="dashboard-header">
+        <div class="header-title-area">
+          <h1 id="activePanelTitle">Bookings &amp; Inquiries</h1>
+          <p id="activePanelSubtitle">Track table reservations, event planners, and general patron messages.</p>
+        </div>
+        <div class="admin-profile">
+          <div class="admin-avatar"><i class="fa-solid fa-user-shield"></i></div>
+          <div>
+            <span class="admin-name">Hotel Administrator</span>
+            <span class="admin-role">Owner Access</span>
+          </div>
+        </div>
+      </header>
+      <!-- 1. BOOKINGS & INQUIRIES PANEL -->
+      <div class="admin-panel active-panel" id="panel-bookings">
+        <!-- Dashboard Statistics Metrics -->
+        <section class="metrics-grid">
+          <div class="metric-card">
+            <div class="metric-icon metric-icon-total"><i class="fa-solid fa-book-open"></i></div>
+            <div class="metric-info">
+              <span class="metric-label">Total Logs</span>
+              <h2 id="metricTotal">0</h2>
+            </div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-icon metric-icon-new"><i class="fa-solid fa-bell"></i></div>
+            <div class="metric-info">
+              <span class="metric-label">New Bookings</span>
+              <h2 id="metricNew">0</h2>
+            </div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-icon metric-icon-progress"><i class="fa-solid fa-circle-check"></i></div>
+            <div class="metric-info">
+              <span class="metric-label">Confirmed</span>
+              <h2 id="metricConfirmed">0</h2>
+            </div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-icon metric-icon-closed"><i class="fa-solid fa-xmark"></i></div>
+            <div class="metric-info">
+              <span class="metric-label">Cancelled</span>
+              <h2 id="metricCancelled">0</h2>
+            </div>
+          </div>
+        </section>
+        <!-- Leads Filter & Table Section -->
+        <section class="leads-section">
+          <div class="leads-header">
+            <div class="leads-title-group">
+              <h3>Reservations Log</h3>
+              <span class="leads-count" id="leadsCount">0 entries</span>
+            </div>
+            
+            <div class="leads-actions">
+              <!-- Filter by Type -->
+              <div class="select-filter">
+                <select id="filterType">
+                  <option value="ALL">All Types</option>
+                  <option value="restaurant">Restaurant Table</option>
+                  <option value="event">Lawn Booking Inquiries</option>
+                  <option value="general">General Messages</option>
+                </select>
+              </div>
+              
+              <!-- Filter by Status -->
+              <div class="select-filter">
+                <select id="filterStatus">
+                  <option value="ALL">All Statuses</option>
+                  <option value="New">New</option>
+                  <option value="Confirmed">Confirmed</option>
+                  <option value="Completed">Completed</option>
+                  <option value="Cancelled">Cancelled</option>
+                </select>
+              </div>
+              <!-- Export CSV & Refresh -->
+              <button class="btn btn-outline" id="exportCsvBtn"><i class="fa-solid fa-file-csv"></i> Export CSV</button>
+              <button class="btn btn-primary" id="refreshBtn" title="Refresh Listings"><i class="fa-solid fa-rotate"></i></button>
+            </div>
+          </div>
+          <!-- Table Wrapper -->
+          <div class="table-responsive">
+            <table class="leads-table" id="leadsTable">
+              <thead>
+                <tr>
+                  <th>Date Logged</th>
+                  <th>Log Type</th>
+                  <th>Patron Name</th>
+                  <th>Contact Details</th>
+                  <th>Guests / Details</th>
+                  <th>Notes / Message</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="leadsTableBody">
+                <tr>
+                  <td colspan="8" class="loading-row">
+                    <i class="fa-solid fa-spinner fa-spin"></i> Fetching reservation bookings...
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+      <!-- 2. MOVIES MANAGER PANEL -->
+      <div class="admin-panel" id="panel-movies">
+        <div class="item-editor-grid">
+          
+          <!-- Editor Form -->
+          <div class="editor-sidebar">
+            <h3 style="margin-bottom: 20px; color: var(--color-gold); font-family: var(--font-headings);">Save Movie</h3>
+            <form id="movieForm">
+              <input type="hidden" id="movie-edit-id" name="id">
+              
+              <div class="form-group">
+                <label for="movie-title">Movie Title *</label>
+                <input type="text" id="movie-title" name="title" required style="padding-left: 15px;">
+              </div>
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="movie-genre">Genre *</label>
+                  <input type="text" id="movie-genre" name="genre" placeholder="e.g. Action/Sci-Fi" required style="padding-left: 15px;">
+                </div>
+                <div class="form-group">
+                  <label for="movie-duration">Duration *</label>
+                  <input type="text" id="movie-duration" name="duration" placeholder="e.g. 142 mins" required style="padding-left: 15px;">
+                </div>
+              </div>
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="movie-language">Language *</label>
+                  <input type="text" id="movie-language" name="language" placeholder="e.g. Hindi / English" required style="padding-left: 15px;">
+                </div>
+                <div class="form-group">
+                  <label for="movie-rating">Rating *</label>
+                  <select id="movie-rating" name="rating" required style="padding-left: 15px;">
+                    <option value="U">U (Universal)</option>
+                    <option value="UA">UA (Parental guidance)</option>
+                    <option value="A">A (Adults only)</option>
+                    <option value="R">R (Restricted)</option>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label for="movie-poster">Poster URL *</label>
+                <input type="url" id="movie-poster" name="poster" placeholder="Image URL address" required style="padding-left: 15px;">
+              </div>
+              
+              <div class="form-group">
+                <label for="movie-status">Screen Status *</label>
+                <select id="movie-status" name="status" required style="padding-left: 15px;">
+                  <option value="now-showing">Now Showing</option>
+                  <option value="coming-soon">Coming Soon</option>
+                </select>
+              </div>
+              <div id="showtimes-section">
+                <div class="form-group">
+                  <label for="movie-shows-today">Today Showtimes (Comma separated)</label>
+                  <input type="text" id="movie-shows-today" name="showsToday" placeholder="e.g. 12:00 PM, 3:30 PM, 7:00 PM" style="padding-left: 15px;">
+                </div>
+                <div class="form-group">
+                  <label for="movie-shows-tomorrow">Tomorrow Showtimes (Comma separated)</label>
+                  <input type="text" id="movie-shows-tomorrow" name="showsTomorrow" placeholder="e.g. 12:30 PM, 4:00 PM, 8:00 PM" style="padding-left: 15px;">
+                </div>
+              </div>
+              <div style="display: flex; gap: 10px;">
+                <button type="submit" class="btn btn-primary" style="flex: 1;">Save Movie</button>
+                <button type="button" class="btn btn-outline" onclick="clearMovieForm()">Cancel</button>
+              </div>
+            </form>
+          </div>
+          <!-- Listings Column -->
+          <div>
+            <div class="manager-header">
+              <h3>Currently Configured Movies</h3>
+            </div>
+            <div class="items-list-grid" id="adminMoviesGrid">
+              <!-- Populated dynamically -->
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      <!-- 3. MENU MANAGER PANEL -->
+      <div class="admin-panel" id="panel-menu">
+        <div class="item-editor-grid">
+          
+          <!-- Editor Form -->
+          <div class="editor-sidebar">
+            <h3 style="margin-bottom: 20px; color: var(--color-gold); font-family: var(--font-headings);">Save Menu Dish</h3>
+            <form id="menuForm">
+              <input type="hidden" id="menu-edit-id" name="id">
+              
+              <div class="form-group">
+                <label for="menu-name">Dish Name *</label>
+                <input type="text" id="menu-name" name="name" required style="padding-left: 15px;">
+              </div>
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="menu-category">Category *</label>
+                  <select id="menu-category" name="category" required style="padding-left: 15px;">
+                    <option value="Starters">Starters</option>
+                    <option value="Mains">Mains</option>
+                    <option value="Desserts">Desserts</option>
+                    <option value="Beverages">Beverages</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="menu-price">Price (INR) *</label>
+                  <input type="number" id="menu-price" name="price" min="0" required style="padding-left: 15px;">
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label for="menu-image">Dish Image URL *</label>
+                <input type="url" id="menu-image" name="image" placeholder="Image URL address" required style="padding-left: 15px;">
+              </div>
+              <div class="form-group" style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+                <input type="checkbox" id="menu-chef-special" name="isChefSpecial" style="width: auto; margin: 0; padding: 0;">
+                <label for="menu-chef-special" style="margin: 0; text-transform: uppercase; font-size: 0.75rem;">Mark as Chef's Special (Signature)</label>
+              </div>
+              
+              <div class="form-group">
+                <label for="menu-desc">Description / Ingredients *</label>
+                <textarea id="menu-desc" name="description" rows="3" required placeholder="Describe ingredients, spice levels, allergens..."></textarea>
+              </div>
+              <div style="display: flex; gap: 10px;">
+                <button type="submit" class="btn btn-primary" style="flex: 1;">Save Dish</button>
+                <button type="button" class="btn btn-outline" onclick="clearMenuForm()">Cancel</button>
+              </div>
+            </form>
+          </div>
+          <!-- Listings Column -->
+          <div>
+            <div class="manager-header">
+              <h3>Configured Dishes</h3>
+            </div>
+            <div class="items-list-grid" id="adminMenuGrid">
+              <!-- Populated dynamically -->
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      <!-- 4. GALLERY MANAGER PANEL -->
+      <div class="admin-panel" id="panel-gallery">
+        <div class="item-editor-grid">
+          
+          <!-- Editor Form -->
+          <div class="editor-sidebar">
+            <h3 style="margin-bottom: 20px; color: var(--color-gold); font-family: var(--font-headings);">Add Gallery Image</h3>
+            <form id="galleryForm">
+              <div class="form-group">
+                <label for="gal-url">Image URL Address *</label>
+                <input type="url" id="gal-url" name="url" required placeholder="Image URL address" style="padding-left: 15px;">
+              </div>
+              
+              <div class="form-group">
+                <label for="gal-cat">Category Location *</label>
+                <select id="gal-cat" name="category" required style="padding-left: 15px;">
+                  <option value="Restaurant">Restaurant Interior</option>
+                  <option value="Food">Gourmet Food</option>
+                  <option value="Banquet">Banquet Lawn Setup</option>
+                  <option value="Wedding">Wedding Event Decor</option>
+                  <option value="Corporate Events">Corporate Gatherings</option>
+                  <option value="Theatre">Theatre Interiors</option>
+                  <option value="Events">General Gatherings</option>
+                </select>
+              </div>
+              <button type="submit" class="btn btn-primary btn-full">Add To Gallery</button>
+            </form>
+          </div>
+          <!-- Gallery List Grid -->
+          <div>
+            <div class="manager-header">
+              <h3>Gallery Media Archive</h3>
+            </div>
+            <div class="items-list-grid" id="adminGalleryGrid" style="grid-template-columns: repeat(3, 1fr);">
+              <!-- Populated dynamically -->
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      <!-- 5. OFFERS MANAGER PANEL -->
+      <div class="admin-panel" id="panel-offers">
+        <div class="item-editor-grid">
+          
+          <!-- Editor Form -->
+          <div class="editor-sidebar">
+            <h3 style="margin-bottom: 20px; color: var(--color-gold); font-family: var(--font-headings);">Save Promo Offer</h3>
+            <form id="offerForm">
+              <input type="hidden" id="offer-edit-id" name="id">
+              
+              <div class="form-group">
+                <label for="offer-title">Offer Package Title *</label>
+                <input type="text" id="offer-title" name="title" required style="padding-left: 15px;">
+              </div>
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="offer-code">Promo Code *</label>
+                  <input type="text" id="offer-code" name="code" placeholder="e.g. SAVE20" required style="padding-left: 15px;">
+                </div>
+                <div class="form-group">
+                  <label for="offer-discount">Discount Label *</label>
+                  <input type="text" id="offer-discount" name="discount" placeholder="e.g. 20% Off" required style="padding-left: 15px;">
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label for="offer-validity">Validity Period *</label>
+                <input type="text" id="offer-validity" name="validity" placeholder="e.g. Valid till Dec 2026" required style="padding-left: 15px;">
+              </div>
+              
+              <div class="form-group">
+                <label for="offer-desc">Short Package Details *</label>
+                <textarea id="offer-desc" name="description" rows="3" required placeholder="Detail complimentary services or discount rules..."></textarea>
+              </div>
+              <div style="display: flex; gap: 10px;">
+                <button type="submit" class="btn btn-primary" style="flex: 1;">Save Offer</button>
+                <button type="button" class="btn btn-outline" onclick="clearOfferForm()">Cancel</button>
+              </div>
+            </form>
+          </div>
+          <!-- Offers Grid -->
+          <div>
+            <div class="manager-header">
+              <h3>Configured Special Offers</h3>
+            </div>
+            <div class="items-list-grid" id="adminOffersGrid">
+              <!-- Populated dynamically -->
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      <!-- 6. TESTIMONIALS PANEL -->
+      <div class="admin-panel" id="panel-testimonials">
+        <div class="item-editor-grid">
+          
+          <!-- Editor Form -->
+          <div class="editor-sidebar">
+            <h3 style="margin-bottom: 20px; color: var(--color-gold); font-family: var(--font-headings);">Save Testimonial</h3>
+            <form id="testimonialForm">
+              <input type="hidden" id="testimonial-edit-id" name="id">
+              
+              <div class="form-group">
+                <label for="test-name">Reviewer Name *</label>
+                <input type="text" id="test-name" name="name" required style="padding-left: 15px;">
+              </div>
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="test-role">Client Role / Profession *</label>
+                  <input type="text" id="test-role" name="role" placeholder="e.g. Groom's Father" required style="padding-left: 15px;">
+                </div>
+                <div class="form-group">
+                  <label for="test-rating">Stars Rating *</label>
+                  <select id="test-rating" name="rating" required style="padding-left: 15px;">
+                    <option value="5">5 Stars</option>
+                    <option value="4">4 Stars</option>
+                    <option value="3">3 Stars</option>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label for="test-quote">Guest Quote Review *</label>
+                <textarea id="test-quote" name="quote" rows="4" required placeholder="Paste reviewer quotes..."></textarea>
+              </div>
+              <div style="display: flex; gap: 10px;">
+                <button type="submit" class="btn btn-primary" style="flex: 1;">Save Review</button>
+                <button type="button" class="btn btn-outline" onclick="clearTestimonialForm()">Cancel</button>
+              </div>
+            </form>
+          </div>
+          <!-- Listings Column -->
+          <div>
+            <div class="manager-header">
+              <h3>Customer Reviews</h3>
+            </div>
+            <div class="items-list-grid" id="adminTestimonialsGrid">
+              <!-- Populated dynamically -->
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      <!-- 7. GENERAL CONFIG SETTINGS PANEL -->
+      <div class="admin-panel" id="panel-settings">
+        <div style="max-width: 800px;">
+          
+          <form id="settingsForm">
+            <!-- Homepage Banner settings -->
+            <section class="leads-section" style="margin-bottom: 30px;">
+              <h3 style="color: var(--color-gold); font-family: var(--font-headings); margin-bottom: 20px; text-transform: uppercase;">Hero Banner Settings</h3>
+              
+              <div class="form-group">
+                <label for="set-headline">Banner Headline Title *</label>
+                <input type="text" id="set-headline" name="headline" required style="padding-left: 15px;">
+              </div>
+              
+              <div class="form-group">
+                <label for="set-subheading">Banner Subheading Detail *</label>
+                <textarea id="set-subheading" name="subheading" rows="3" required></textarea>
+              </div>
+            </section>
+            <!-- Contact Information details -->
+            <section class="leads-section" style="margin-bottom: 30px;">
+              <h3 style="color: var(--color-gold); font-family: var(--font-headings); margin-bottom: 20px; text-transform: uppercase;">Contact &amp; Operations Details</h3>
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="set-phone">Phone Number *</label>
+                  <input type="text" id="set-phone" name="phone" required style="padding-left: 15px;">
+                </div>
+                <div class="form-group">
+                  <label for="set-email">Email Address *</label>
+                  <input type="email" id="set-email" name="email" required style="padding-left: 15px;">
+                </div>
+              </div>
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="set-whatsapp">WhatsApp Contact (Number with country code) *</label>
+                  <input type="text" id="set-whatsapp" name="whatsapp" placeholder="e.g. 919999988888" required style="padding-left: 15px;">
+                </div>
+                <div class="form-group">
+                  <label for="set-address">Operational Address *</label>
+                  <input type="text" id="set-address" name="address" required style="padding-left: 15px;">
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label for="set-hours">Operational Hours *</label>
+                <textarea id="set-hours" name="workingHours" rows="3" required placeholder="Restaurant: 11:00 AM - 11:30 PM..."></textarea>
+              </div>
+              
+              <div class="form-group">
+                <label for="set-map">Google Maps Embed URL Address *</label>
+                <input type="url" id="set-map" name="mapEmbed" placeholder="https://www.google.com/maps/embed..." required style="padding-left: 15px;">
+              </div>
+            </section>
+            <button type="submit" class="btn btn-primary" style="padding: 12px 30px; font-size: 0.95rem;">Save General Settings <i class="fa-solid fa-floppy-disk"></i></button>
+          </form>
+          
+        </div>
+      </div>
+    </main>
+  </div>
+  <!-- Toast Notification Wrapper -->
+  <div id="toastContainer" class="toast-container"></div>
+  <!-- Admin JavaScript Core -->
+  <script src="admin.js"></script>
+</body>
+</html>
