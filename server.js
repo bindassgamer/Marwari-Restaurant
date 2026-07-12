@@ -167,7 +167,7 @@ const submissions=readSubmissions();
 submissions.unshift(submission);
 
 
-if(writeSubmissions(submissions)){
+console.log(submissions);{
 
 res.json({
 success:true,
@@ -238,7 +238,7 @@ const submissions=readSubmissions();
 submissions.unshift(submission);
 
 
-writeSubmissions(submissions);
+console.log(submissions);
 
 
 res.json({
@@ -307,7 +307,7 @@ const submissions=readSubmissions();
 
 submissions.unshift(submission);
 
-writeSubmissions(submissions);
+console.log(submissions);
 
 
 
