@@ -473,14 +473,16 @@ message:"Logged out"
 
 
 // Frontend fallback
-app.get('*',(req,res)=>{
-
-
-res.sendFile(
-path.join(__dirname,'public','index.html')
-);
-
-
+app.get('*', (req, res) => {
+  const publicIndex = path.join(__dirname, 'public', 'index.html');
+  const rootIndex = path.join(__dirname, 'index.html');
+  if (fs.existsSync(publicIndex)) {
+    return res.sendFile(publicIndex);
+  }
+  if (fs.existsSync(rootIndex)) {
+    return res.sendFile(rootIndex);
+  }
+  res.status(404).send('Not Found');
 });
 
 
