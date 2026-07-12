@@ -1,7 +1,8 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
-const { v4: uuidv4 } = require('uuid');
+const { randomUUID } = require('crypto');
+const uuidv4 = () => randomUUID();
 const cors = require('cors');
 require('dotenv').config();
 
