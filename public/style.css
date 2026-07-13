@@ -249,7 +249,7 @@ img {
 .nav-list {
   display: flex;
   list-style: none;
-  gap: 30px;
+  gap: 20px;
 }
 .nav-link {
   font-family: var(--font-headings);
@@ -1891,7 +1891,7 @@ img {
     letter-spacing: 1px;
   }
   .nav-menu {
-    top: 75px;
+    top: 70px;
     height: calc(100vh - 75px);
     padding: 40px 15px;
     gap: 15px;
@@ -1929,7 +1929,7 @@ img {
     letter-spacing: 2px;
   }
   .page-section {
-    padding: 40px 0;
+    padding: 70px 0;
   }
   .cta-headline {
     font-size: 1.5rem;
